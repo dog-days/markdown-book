@@ -56,52 +56,6 @@ class Fetch extends BasicFetch {
 		}
 		return super.dispatchFetchOne(url,request,receive,successCallback200,callbackOtherStatusNot401,errorCallback);
 	}
-	@override	
-	dispatchFetchMore(urls,request,receive,successCallback200,callbackOtherStatus,errorCallback){
-		let msg = { };
-		if(!successCallback200){
-			successCallback200 = (jsonArray,dispatch)=>{
-
-			}
-		}
-		if(!callbackOtherStatus){
-			callbackOtherStatus = (jsonArray,dispatch)=>{
-				var i = 0;
-				var j = 0;
-				jsonArray.forEach(function(v,k){
-					if(v.status == 401){
-						if(i == 0){
-							setTimeout(function(){
-								dispatch(push('/login'))
-							},1000)
-						}
-						i++;
-					}else{
-						if(j == 0){
-							msg = {
-								title: '提示',
-								content: "请求出错！",
-							}
-							//Antd.Modal.error(msg);
-							Antd.message.error(jsonArray[j].message)
-						}
-						j++;
-					}
-				})
-			}
-		}
-		if(!errorCallback){
-			errorCallback = (e)=>{
-				msg = {
-					title: '提示',
-					content: "发生未知错误！",
-				}
-				//Antd.Modal.error(msg);	
-				Antd.message.error(msg.content)
-			}
-		}
-		return super.dispatchFetchMore(urls,request,receive,successCallback200,callbackOtherStatus,errorCallback);
-	}
 }
 
 module.exports = Fetch; 

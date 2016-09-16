@@ -69,6 +69,11 @@ var output = {
 					.split('/');		
 		return p;
 	},
+    getQuerySpecialString(url,name){
+        var reg = new RegExp(name + "=([^&]+)","i");
+        var r = url.match(reg);
+        return r && r[1];
+    },
 	/**
 	 * isEmptyObj 判断对象是否为空
 	 * @param  {Object}  obj json对象

@@ -22,6 +22,10 @@ var config = Object.assign({}, webpack_config, {
             },
             { test: /\.css$/, loader: ExtractTextPlugin.extract("style", "css") },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract("style", "css!sass") },
+            {
+                test: /\.json$/,
+                loader: 'json'
+            }
         ]
     },
     plugins: [

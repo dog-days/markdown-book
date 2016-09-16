@@ -1,11 +1,11 @@
 import React from 'react'
-import Component from 'r2/module/ModuleComponent'
+import Component from 'common/MarkdownModuleComponent'
 import { connect } from 'react-redux'
-import Antd from 'antd'
-import { Menu } from 'antd'
 import { Link } from 'react-router'
+import * as actionCreator from './action.js'
+import ReactMarkdown from 'react-markdown'
 
-require('antd/dist/antd.css')
+require('css/github_markdown.scss')
 require('css/base.scss')
 require('css/main.scss')
 
@@ -15,52 +15,25 @@ class View extends Component {
 	}
 
 	componentDidMount(){
-		var _this = this;
-	}
-
-	componentWillUnmount(){
-	}
-	/**
-	 *	数据处理与适配
-	 */
-	dataAdapter(){
-		var _this = this;
-		return {
-		}
-	}
-	/**
-	 *	事件处理
-	 */
-	events(){
-		var _this = this;
-		return{
-		}
+        this.props.dispatch(actionCreator.fetchMarkdownData("sidebar"))
 	}
 
     render() {
 		super.render();
+		let { targetProps } = this.props;
+        if(!targetProps.main || !targetProps.main.result){
+            return <span>加载中</span>
+        }
+        var md_content = targetProps.main.result; 
 		return (
 			<div className="r2-layout">
-				<Menu onClick={this.handleClick} mode="horizontal" theme="dark">
-					<Menu.Item key="demo">
-						<Link to={`${ r2Common.prefixUrl }`}>
-						    { r2fn.t("R2框架") }
-						</Link>
-					</Menu.Item>
-					<Menu.Item key="home">
-						<Link to={`${ r2Common.prefixUrl }`}>
-						    { r2fn.t("主页") }
-						</Link>
-					</Menu.Item>
-					<Menu.Item key="about">
-						<Link to={`${ r2Common.prefixUrl }/about`}>
-						    { r2fn.t("关于") }
-						</Link>
-					</Menu.Item>
-				</Menu>
-				<div className="r2-breadcrumb">
-					{ this.breadcrumb || "" }
-				</div>
+                <div className="r2-sidebar">
+                    <ReactMarkdown 
+                        className="md-sidebar markdown-body"
+                        source={ md_content }
+                        renderers={ this.renderers() }
+                    /> 
+                </div>
 				<div className="r2-contents">
 					{ this.props.children || "" }
 				</div>
@@ -70,11 +43,12 @@ class View extends Component {
 }
 var ReduxView = connect((state)=>{
 	return {
+        targetProps: state.get("layout"),
 	};
 })(View)
 ReduxView.defaultProps = Object.assign({},Component.defaultProps,{
 	homeLink: {
-		label:<Antd.Icon type="home"/>,
+        label:"Home",
 		link:'/',
 	},
 });

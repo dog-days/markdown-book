@@ -1,22 +1,13 @@
 .b {
-	border:1px solid red;
+	border: 1px solid red;
 }
-body {
-    /*background: #fff;*/
-	height:100%;
-}
-table {
-    font-size: 13px;
-}
-pre {
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
+html,body {
+    margin: 0;
+    padding: 0;
+	height: 100%;
 }
 /**overide ant**/
-.ant-modal-mask{
+.ant-modal-mask {
     z-index: 1000;
 }
 .ant-tabs-nav .ant-tabs-tab {
@@ -36,11 +27,35 @@ pre {
     width: 100%;
 }
 
-.r2-contents{
-	padding:0px 20px;
+.r2-layout{
+    padding: 10px 0 0 0px;
 }
-.r2-breadcrumb{
-	padding-top:15px;
-	padding-left:20px;
+/**sidebar**/
+.r2-sidebar {
+    position:fixed;
+    width:240px;
+    top:0;
+    height:100%;
+    overflow:hidden;
+    border-right:1px solid #ccc;
+    box-shadow: 0 0 40px #CCC;
+    padding: 10px 0 0 10px;
+}
+.md-sidebar{
+    position: absolute;
+    height: 100%;
+    overflow: auto;
+    width:250px;
+    padding-right:20px;
+}
+
+/**contents**/
+.r2-contents {
+	padding: 0px 20px;
+    padding-left:277px;
+}
+.r2-breadcrumb {
+	padding-top: 15px;
+	padding-left: 20px;
 }
 
