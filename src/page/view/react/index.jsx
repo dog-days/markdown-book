@@ -58,26 +58,30 @@ class View extends Component {
             <div style={ { height: "100%", } }>
                 {
                     !md_not_found &&
-                    <ReactMarkdown 
-                        className="markdown-body"
-                        source={ md_content }
-                        renderers={ this.renderers() }
-                    /> 
+                    <div className="markdown-contents">
+                        <ReactMarkdown 
+                            className="markdown-body"
+                            source={ md_content }
+                            renderers={ this.renderers() }
+                        /> 
+                        <br />
+                        {
+                            this.param && 
+                            <div 
+                                id="duoshuo-con"
+                                className="ds-thread" 
+                                data-thread-key={this.param} 
+                                data-title={this.param} 
+                                data-url={location.href} />
+                        }
+                    </div>
                 }
+                
                 {
                     md_not_found &&
                     <NoPage history={ this.props.history }/>
                 }
-                <br />
-                {
-                    !md_not_found && this.param && 
-                    <div 
-                        id="duoshuo-con"
-                        className="ds-thread" 
-                        data-thread-key={this.param} 
-                        data-title={this.param} 
-                        data-url={location.href} />
-                }
+                
             </div>
 		)	
     }
