@@ -5,8 +5,8 @@ export function react(state = {}, action) {
     	
 		case actionCreator.REQUEST: 
 		case actionCreator.RECIEVE: 	
+		case actionCreator.GETHEADING: 	
 			return Object.assign({}, state,action);
-		
         default:
 			return state;
     }

@@ -10,9 +10,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath,//必须跟webpack.config.js一致
 }));
+app.use(require('webpack-hot-middleware')(compiler));
 //设置路径不存在(webpack-dev-middleware内存中也不存在)时访问的目录
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('webpack-hot-middleware')(compiler));
 //地址重写，所以请求都定位到public/index.html文件
 app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'public/index_dev.html'));

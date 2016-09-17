@@ -6,34 +6,90 @@ html,body {
     padding: 0;
 	height: 100%;
 }
-/**overide ant**/
-.ant-modal-mask {
-    z-index: 1000;
+#app_container {
+    height: 100%;
 }
-.ant-tabs-nav .ant-tabs-tab {
-    height: auto;
+//spin
+@keyframes antSpinBounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
-.none_head_table .ant-table-thead {
+.spin-con {
+    text-align: center;
+    padding-top: 200px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #373737;
+    background-color: rgba(55,55,55,.2);
+    margin: -10px -20px 0 -18px;
+}
+.ant-spin {
+    margin-right: 16px;
+}
+.ant-spin-spinning {
+    opacity: 1;
+    position: static;
+    display: inline-block;
+}
+.ant-spin {
+    color: #2db7f5;
+    vertical-align: middle;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    -webkit-transition: -webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+    transition: -webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+    transition: transform .3s cubic-bezier(.78,.14,.15,.86);
+    transition: transform .3s cubic-bezier(.78,.14,.15,.86),-webkit-transform .3s cubic-bezier(.78,.14,.15,.86);
+    font-size: 12px;
+}
+.ant-spin-text {
     display: none;
 }
-.ant-table td {
-    word-break: break-all
+.ant-spin-lg .ant-spin-dot {
+    width: 32px;
+    height: 32px;
 }
-.ant-pagination-item {
-    padding: 0 10px;
-    min-width: auto;
+.ant-spin-dot {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
 }
-.ant-tabs-nav-scroll {
-    width: 100%;
+.ant-spin-dot:after, .ant-spin-dot:before {
+    content: '';
+    border-radius: 50%;
+    background-color: #2db7f5;
+    animation: antSpinBounce 2.2s infinite ease-in-out;
+    display: block;
+    position: absolute;
+    opacity: .5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
-
+.ant-spin-dot:after {
+    animation-delay: -1.1s;
+    }
 .r2-layout{
     padding: 10px 0 0 0px;
+    height: 100%;
 }
 /**sidebar**/
 .r2-sidebar {
     position:fixed;
-    width:240px;
+    width:260px;
     top:0;
     height:100%;
     overflow:hidden;
@@ -46,16 +102,22 @@ html,body {
     height: 100%;
     overflow: auto;
     width:250px;
-    padding-right:20px;
+    padding-right:40px;
+}
+.md-sidebar h1 > .anchor{
+    display: none;
 }
 
 /**contents**/
 .r2-contents {
 	padding: 0px 20px;
-    padding-left:277px;
-}
-.r2-breadcrumb {
-	padding-top: 15px;
-	padding-left: 20px;
-}
+    padding-left:287px;
+    left: 0;
+    top: 0;
+    height: 100%;
+} 
 
+.markdown-body .anchor {
+    float: none; 
+    margin-left: 5px;
+}

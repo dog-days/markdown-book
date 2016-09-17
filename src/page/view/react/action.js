@@ -4,6 +4,14 @@ let receivePosts = r2ActionCreator.receivePosts;
 //常量
 export const REQUEST = 'REQUESTREACT'
 export const RECIEVE = 'RECIEVEAREACT'
+export const GETHEADING = "GETHEADING"; 
+
+export function getHeading(props) {
+    return {
+        type: GETHEADING, 
+        heading: props, 
+    }
+}
 
 export function fetchMarkdownData(name,success) {
 	var url = `/markdown/${ name }.md`;

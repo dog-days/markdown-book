@@ -22,5 +22,3 @@
 15. [手脚架推荐](/react/framework?react=true)
 16. [高阶实践](/react/higher_pratice?react=true)
 17. [坑集](/react/pit?react=true)
-
-<br />

@@ -1,14 +1,14 @@
 .nopage-con {
-	position:absolute;
 	padding-top:10%;
 	width:100%;
 	height:100%;
-	background-color: #0A7189;
+	background-color: rgb(71, 125, 194);
 	color: #fff;
 	font: 100% "Lato" , sans-serif;
 	font-size: 1.8rem;
 	font-weight: 300;
 	text-align:center;
+    height: 100%;
 }
 .nopage-con a {
     color: #75C6D9;

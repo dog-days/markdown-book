@@ -6,7 +6,6 @@ class NoPage extends React.Component {
 
 	constructor(props){
 		super(props); 
-		console.debug(props)
 	}
 
 	goBack(){
@@ -24,7 +23,7 @@ class NoPage extends React.Component {
 			    </article>
 				<article>
 			        <ul>
-						<li><Link to="/">返回主页</Link></li>
+                        <li><Link to={r2Common.prefixUrl}>返回主页</Link></li>
 						<li><a href="javascript:void(0)" onClick={ this.goBack() }>返回</a></li>
 			        </ul>
 			    </article>

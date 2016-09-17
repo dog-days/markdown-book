@@ -21,18 +21,26 @@ class View extends Component {
     render() {
 		super.render();
 		let { targetProps } = this.props;
-        if(!targetProps.main || !targetProps.main.result){
-            return <span>加载中</span>
+        var md_content;
+        if(targetProps.main && targetProps.main.result){
+            md_content = targetProps.main.result; 
         }
-        var md_content = targetProps.main.result; 
+        var Spin = this.renderSpin();
 		return (
 			<div className="r2-layout">
                 <div className="r2-sidebar">
-                    <ReactMarkdown 
-                        className="md-sidebar markdown-body"
-                        source={ md_content }
-                        renderers={ this.renderers() }
-                    /> 
+                    {
+                        !md_content &&
+                        <div className="spin-con">{ Spin }</div> 
+                    }
+                    {
+                        md_content &&
+                        <ReactMarkdown 
+                            className="md-sidebar markdown-body"
+                            source={ md_content }
+                            renderers={ this.renderers() }
+                        /> 
+                    }
                 </div>
 				<div className="r2-contents">
 					{ this.props.children || "" }
