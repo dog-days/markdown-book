@@ -6,7 +6,7 @@ export const REQUEST = 'REQUESTSIDEBAR'
 export const RECIEVE = 'RECIEVEASIDEBAR'
 
 export function fetchMarkdownData(name,success) {
-	var url = `/markdown/${ name }.md`;
+	var url = `${ window.prefixUrl || ""}/markdown/${ name }.md`;
 	//url参数拼接
 	url = r2fn.params(url,{});
 	return r2fetch({

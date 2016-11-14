@@ -1,7 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { Router,IndexRoute,browserHistory } from 'react-router'
+import { Router,IndexRoute,browserHistory,useRouterHistory } from 'react-router'
+import { createHashHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux' 
 import Immutable from 'immutable'
 //IE10等polyfill
@@ -12,8 +13,14 @@ import configureStore from './store'
 import rootRoute from './routes'
 
 const initialState = Immutable.Map();
-const store = configureStore(initialState,browserHistory);
-var history = syncHistoryWithStore(browserHistory, store,{
+let t_history
+if(window.isHashHistory){
+    t_history = useRouterHistory(createHashHistory)({ queryKey: false });
+}else{
+    t_history = browserHistory;
+}
+const store = configureStore(initialState,t_history);
+var history = syncHistoryWithStore(t_history, store,{
     selectLocationState (state) {
 		return state.get('routing').toJS();
     } 
@@ -25,12 +32,3 @@ render(
 	</Provider>,	
 	document.getElementById('app_container')
 )
-
-/*if (module.hot) {
-    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
-        getRootInstances: function() {
-            // Help React Hot Loader figure out the root component instances on the page:
-            return [rootInstance];
-        }
-    });
-}*/
